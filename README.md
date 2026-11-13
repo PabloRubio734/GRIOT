@@ -14,7 +14,7 @@
 
 ## Qué es GRIOT
 
-GRIOT es una aplicación web conversacional que ayuda a estudiantes del IB a **entender temas, organizar su estudio y mejorar sus trabajos sin hacer el trabajo por ellos**. Es el producto de un *Personal Project* del IB MYP. En el informe académico del proyecto aparece con el nombre **Mentor AIB**.
+GRIOT es una aplicación web conversacional que ayuda a estudiantes del IB a **entender temas, organizar su estudio y mejorar sus trabajos sin hacer el trabajo por ellos**. Es el producto del *Personal Project* del IB MYP de **Manolo Rubio Martín**, estudiante responsable de presentar y explicar el proyecto. El repositorio se publica desde la cuenta de GitHub `PabloRubio734`; la titularidad de esa cuenta no debe confundirse con la autoría académica del informe. En el informe académico del proyecto aparece también con el nombre **Mentor AIB**.
 
 GRIOT no es un chatbot genérico. Sus instrucciones siguen un ciclo pedagógico flexible:
 
@@ -122,15 +122,28 @@ node scripts/test-profiles-ui.mjs
 
 Por transparencia: **GRIOT se desarrolló con la ayuda de [Claude Code](https://claude.com/claude-code)**, un asistente de programación con inteligencia artificial de Anthropic.
 
-El proyecto avanzó por fases a partir de instrucciones escritas para el asistente: interfaz, conexión con Claude, metodología pedagógica, revisión de los perfiles, pruebas y publicación. Claude Code escribió gran parte del código y de las pruebas automáticas siguiendo esas instrucciones. El equipo del proyecto fijó los objetivos de cada fase y autorizó expresamente cada prueba con la API real.
+El proyecto avanzó por fases mediante instrucciones dadas a Claude Code: interfaz, conexión con Claude, metodología pedagógica, revisión de perfiles, pruebas y publicación. **Claude Code generó gran parte del código y de las pruebas automáticas**. El repositorio documenta el producto técnico, pero no permite atribuir por sí solo cada decisión o instrucción a Manolo. Su participación personal, sus decisiones, las habilidades que desarrolló y la reflexión sobre el uso de IA deben explicarse con evidencias auténticas en su informe del Personal Project. La IA se reconoce como herramienta de desarrollo, no como un segundo estudiante autor.
 
 Además, la aplicación usa un modelo de Claude para generar las respuestas del mentor. Por eso la interfaz recuerda que **GRIOT puede equivocarse** y que conviene contrastar la información importante.
 
-## Limitaciones
+## Evidencias y alcance de las pruebas
+
+- Las pruebas de `scripts/mock-anthropic.mjs` y `scripts/test-profiles-ui.mjs` son **pruebas técnicas con respuestas simuladas**: verifican flujos y comportamientos de la interfaz, no la calidad pedagógica de respuestas reales ni la satisfacción de estudiantes.
+- Las pruebas con la API real, las decisiones tomadas durante el desarrollo y cualquier evaluación con estudiantes deben acreditarse por separado en el informe y sus anexos. No se deben presentar simulaciones como encuestas reales.
+- Este repositorio comenzó con **un único commit de publicación**; por ello, el historial de GitHub no documenta por sí mismo las fases anteriores del proyecto. No se han creado commits retroactivos para aparentar una evolución.
+- Las evidencias de trabajo que incluyan datos personales no se publican en este repositorio abierto.
+
+## Limitaciones y seguridad de la versión pública
 
 - Es un proyecto educativo, no un servicio profesional. Las respuestas pueden contener errores.
 - Solo recuerda los mensajes recientes de la conversación actual, y todo se borra al cerrar la pestaña.
-- La versión pública tiene límites de uso para controlar el gasto, así que puede responder «espera un momento» si recibe muchos mensajes seguidos.
+- La clave de Anthropic se configura en el servidor; el archivo `.env.local` no forma parte del repositorio público.
+- Los límites de solicitudes implementados en `src/lib/mentor/rate-limit.ts` se guardan **en memoria**. En un alojamiento con múltiples instancias o reinicios, **no garantizan un límite global diario ni un gasto máximo**. Para uso público sostenido se necesita un limitador compartido y controles de presupuesto en la cuenta de Anthropic. Hasta entonces, no deben considerarse una protección suficiente contra el consumo excesivo.
+- La versión pública puede mostrar mensajes de espera cuando se alcanzan límites locales o de la API.
+
+## Versión de entrega
+
+La primera versión pública del código se publicó en GitHub el **13 de noviembre de 2026**. Una etiqueta o release `v1.0.0` puede utilizarse para identificar el estado final entregado; **no representa etapas históricas anteriores ni pruebas que no se hayan realizado**.
 
 ## Identidad visual
 
