@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/*
+ * Identidad visual de GRIOT
+ * Tema oscuro con acentos violeta → azul. Tokens reutilizables como clases
+ * de Tailwind: bg-night, bg-panel, border-line, text-muted…
+ */
+@theme {
+  --color-night: #07070e;
+  --color-panel: #0d0d18;
+  --color-panel-raised: #14142a;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.14);
+  --color-ink: #ececf6;
+  --color-muted: #9b9bb8;
+  --color-faint: #6a6a88;
+  --color-accent: #8b5cf6;
+  --color-accent-2: #3b82f6;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --animate-fade-up: fade-up 0.35s ease-out both;
+  --animate-dot: dot 1.2s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes dot {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+      transform: translateY(0);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 70% -10%, rgb(139 92 246 / 0.14), transparent 70%),
+    radial-gradient(ellipse 50% 35% at 10% 110%, rgb(59 130 246 / 0.1), transparent 70%);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: rgb(139 92 246 / 0.4);
+}
+
+/* Barras de desplazamiento discretas */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.12) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

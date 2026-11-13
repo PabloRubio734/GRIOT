@@ -1,0 +1,17 @@
+# Archivos que NO se suben a Vercel al desplegar con la CLI.
+# Las claves nunca salen del ordenador: en Vercel se configuran como variables de entorno.
+.env*
+!.env.example
+**/.env*
+
+# Evidencias del Personal Project (no forman parte de la aplicación)
+docs/
+
+# Compilaciones y dependencias locales (Vercel las genera de nuevo)
+.next/
+node_modules/
+*.tsbuildinfo
+
+# Archivos de pruebas que pueden contener texto de conversaciones
+ultima-peticion.json
+mock-last-request.json
